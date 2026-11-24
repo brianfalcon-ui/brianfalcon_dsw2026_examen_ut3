@@ -1,0 +1,17 @@
+meta {
+  name: 04 - Documento inexistente (404)
+  type: http
+  seq: 4
+}
+
+get {
+  url: {{baseUrl}}/api/v1/admin/documents/no-existe
+  body: none
+  auth: none
+}
+
+assert {
+  res.status: eq 404
+  res.body.message: eq "Document with id 'no-existe' not found"
+  res.body.resourceId: eq "no-existe"
+}
