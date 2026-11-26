@@ -33,11 +33,17 @@ export function create(req: Request, res: Response): void {
 // PATCH /api/v1/admin/documents/:documentId
 export function update(req: Request, res: Response): void {
   const { title, description } = req.body;
+
+  if (title !== undefined && (typeof title !== 'string' || title.trim().length === 0)) {
+    res.status(400).json({ error: 'INVALID_TITLE', message: 'Title must be a non-empty string' });
+    return;
+  } 
   const document = documentsService.update(
     String(req.params.documentId),
     title,
     description,
   );
+
 
   if (!document) {
     throw new AppError(404, 'Document not found', 'DOCUMENT_NOT_FOUND');
