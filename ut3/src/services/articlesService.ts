@@ -1,7 +1,9 @@
 // Services layer: business logic and data. Plain TypeScript — it never
 // imports Express nor touches req/res/next, so it can be tested without HTTP.
 
-import { randomUUID } from 'node:crypto';
+import { randomUUID } from "node:crypto";
+import { AppError } from "../errors/AppError.js";
+import { AppErrorDescription } from "../errors/AppErrorDescription.js";
 
 export interface Article {
   id: string;
@@ -18,7 +20,17 @@ export interface ArticleChanges {
 // The in-memory array now lives here, not in the routes.
 const articles: Article[] = [];
 
-export function list(page: number, limit: number) {
+export function list(page: number, limit: number, sinDescripcion?: string) {
+  let results = articles;
+
+  if (sinDescripcion === "1") {
+    results = results.filter((articles) => articles.description.includes("1"));
+  }
+  
+
+/*   const filteredArticles = articles.filter(
+  (article) => article.description === '1',
+); */
   const start = (page - 1) * limit;
   return {
     data: articles.slice(start, start + limit),
@@ -31,6 +43,17 @@ export function getById(id: string): Article | undefined {
 }
 
 export function create(title: string, description: string): Article {
+  if (description === "ERROR") {
+    throw new AppErrorDescription(
+      400,
+      `Description must not contain ERROR`,
+      "INVALID_DESCRIPTION",
+    );
+  }
+  if (description === "" && description !== undefined) {
+    description = "Sin descripcion";
+  }
+
   const article: Article = {
     id: randomUUID(),
     title,
@@ -41,7 +64,10 @@ export function create(title: string, description: string): Article {
   return article;
 }
 
-export function update(id: string, changes: ArticleChanges): Article | undefined {
+export function update(
+  id: string,
+  changes: ArticleChanges,
+): Article | undefined {
   const article = getById(id);
   if (!article) {
     return undefined;
