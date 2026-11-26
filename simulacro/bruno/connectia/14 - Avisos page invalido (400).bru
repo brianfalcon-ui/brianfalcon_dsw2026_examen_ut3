@@ -1,0 +1,20 @@
+meta {
+  name: 14 - Avisos page invalido (400)
+  type: http
+  seq: 14
+}
+
+get {
+  url: {{baseUrl}}/api/v1/notices?page=0
+  body: none
+  auth: none
+}
+
+params:query {
+  page: 0
+}
+
+assert {
+  res.status: eq 400
+  res.body.error: eq INVALID_PAGINATION
+}

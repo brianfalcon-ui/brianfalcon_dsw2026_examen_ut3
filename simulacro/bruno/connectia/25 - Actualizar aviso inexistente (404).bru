@@ -1,0 +1,22 @@
+meta {
+  name: 25 - Actualizar aviso inexistente (404)
+  type: http
+  seq: 25
+}
+
+patch {
+  url: {{baseUrl}}/api/v1/notices/no-existe
+  body: json
+  auth: none
+}
+
+body:json {
+  {
+    "title": "Da igual"
+  }
+}
+
+assert {
+  res.status: eq 404
+  res.body.resourceId: eq no-existe
+}

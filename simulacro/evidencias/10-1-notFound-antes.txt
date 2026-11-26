@@ -1,0 +1,32 @@
+Prueba 1: notFound registrado antes de los routers
+
+$ curl -i http://localhost:4000/health/live
+HTTP/1.1 404 Not Found
+X-Powered-By: Express
+X-Request-Id: 4e3b587d-7a33-4bc9-a92a-40c77a420536
+Content-Type: application/json; charset=utf-8
+Content-Length: 67
+ETag: W/"43-fCoRD9Yk7m2Ld/Efea6EcJOiL6E"
+Date: Thu, 26 Nov 2026 11:07:21 GMT
+Connection: keep-alive
+Keep-Alive: timeout=5
+
+{"error":"NOT_FOUND","message":"Route not found: GET /health/live"}
+
+$ curl -i http://localhost:4000/api/v1/notices
+HTTP/1.1 404 Not Found
+X-Powered-By: Express
+X-Request-Id: ad1b8acf-2185-44e6-94f9-6892cd4dc1a0
+Content-Type: application/json; charset=utf-8
+Content-Length: 70
+ETag: W/"46-vzFGSsoQNB8ZEmqFvGzGFGy5I/Q"
+Date: Thu, 26 Nov 2026 11:07:21 GMT
+Connection: keep-alive
+Keep-Alive: timeout=5
+
+{"error":"NOT_FOUND","message":"Route not found: GET /api/v1/notices"}
+
+--- Registros del servidor ---
+Listening on http://localhost:4000 (development), LOG status: (ON)
+{"requestId":"4e3b587d-7a33-4bc9-a92a-40c77a420536","method":"GET","path":"/health/live","status":404,"durationMs":1.9}
+{"requestId":"ad1b8acf-2185-44e6-94f9-6892cd4dc1a0","method":"GET","path":"/api/v1/notices","status":404,"durationMs":0.17}

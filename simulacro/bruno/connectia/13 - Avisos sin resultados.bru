@@ -1,0 +1,21 @@
+meta {
+  name: 13 - Avisos sin resultados
+  type: http
+  seq: 13
+}
+
+get {
+  url: {{baseUrl}}/api/v1/notices?search=zzz
+  body: none
+  auth: none
+}
+
+params:query {
+  search: zzz
+}
+
+assert {
+  res.status: eq 200
+  res.body.data: length 0
+  res.body.pagination.total: eq 0
+}

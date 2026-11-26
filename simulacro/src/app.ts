@@ -19,7 +19,7 @@ export function createApp(): Application {
   app.use('/api/v1/notices', noticesRouter);
   app.use('/api/v1/questions', questionsRouter);
   app.use('/api/v1/articles', articlesRouter);
-  
+
   app.get('/test/:nombreEquipo', (req, res) => {
     const { nombreEquipo } = req.params;
     res.status(200).json({ team: nombreEquipo });

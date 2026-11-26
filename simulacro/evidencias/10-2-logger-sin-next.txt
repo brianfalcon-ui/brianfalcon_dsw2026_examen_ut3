@@ -1,0 +1,8 @@
+Prueba 2: logger sin next() (curl abandona a los 5 s)
+
+$ curl -i http://localhost:4000/health/live
+
+(curl terminó con código 28)
+
+--- Registros del servidor ---
+Listening on http://localhost:4000 (development), LOG status: (ON)

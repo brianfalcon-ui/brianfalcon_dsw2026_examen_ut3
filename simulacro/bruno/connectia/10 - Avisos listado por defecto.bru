@@ -1,0 +1,18 @@
+meta {
+  name: 10 - Avisos listado por defecto
+  type: http
+  seq: 10
+}
+
+get {
+  url: {{baseUrl}}/api/v1/notices
+  body: none
+  auth: none
+}
+
+assert {
+  res.status: eq 200
+  res.body.pagination.page: eq 1
+  res.body.pagination.limit: eq 2
+  res.body.data: length 2
+}

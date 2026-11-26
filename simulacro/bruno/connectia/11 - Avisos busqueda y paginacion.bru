@@ -1,0 +1,23 @@
+meta {
+  name: 11 - Avisos busqueda y paginacion
+  type: http
+  seq: 11
+}
+
+get {
+  url: {{baseUrl}}/api/v1/notices?page=1&limit=2&search=examen
+  body: none
+  auth: none
+}
+
+params:query {
+  page: 1
+  limit: 2
+  search: examen
+}
+
+assert {
+  res.status: eq 200
+  res.body.pagination.total: eq 1
+  res.body.data: length 1
+}

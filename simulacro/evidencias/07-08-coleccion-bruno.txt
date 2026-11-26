@@ -1,0 +1,133 @@
+01 - Listar documentos (200 OK) - 11 ms
+Assertions
+   ✓ res.status: eq 200
+02 - Crear documento (201 Created) - 6 ms
+Assertions
+   ✓ res.status: eq 201
+03 - Crear sin titulo (400) (400 Bad Request) - 2 ms
+Assertions
+   ✓ res.status: eq 400
+04 - Documento inexistente (404) (404 Not Found) - 0 ms
+Assertions
+   ✓ res.status: eq 404
+   ✓ res.body.message: eq "Document with id 'no-existe' not found"
+   ✓ res.body.resourceId: eq "no-existe"
+05 - Listar con paginacion (200 OK) - 0 ms
+Assertions
+   ✓ res.status: eq 200
+06 - Actualizar documento (200 OK) - 0 ms
+Assertions
+   ✓ res.status: eq 200
+07 - Pregunta valida (200 OK) - 0 ms
+Assertions
+   ✓ res.status: eq 200
+08 - Pregunta vacia (400) (400 Bad Request) - 0 ms
+Assertions
+   ✓ res.status: eq 400
+09 - Health live (200 OK) - 0 ms
+Assertions
+   ✓ res.status: eq 200
+10 - Avisos listado por defecto (200 OK) - 1 ms
+Assertions
+   ✓ res.status: eq 200
+   ✓ res.body.pagination.page: eq 1
+   ✓ res.body.pagination.limit: eq 2
+   ✓ res.body.data: length 2
+11 - Avisos busqueda y paginacion (200 OK) - 1 ms
+Assertions
+   ✓ res.status: eq 200
+   ✓ res.body.pagination.total: eq 1
+   ✓ res.body.data: length 1
+12 - Avisos pagina posterior a la ultima (200 OK) - 0 ms
+Assertions
+   ✓ res.status: eq 200
+   ✓ res.body.data: length 0
+13 - Avisos sin resultados (200 OK) - 1 ms
+Assertions
+   ✓ res.status: eq 200
+   ✓ res.body.data: length 0
+   ✓ res.body.pagination.total: eq 0
+14 - Avisos page invalido (400) (400 Bad Request) - 1 ms
+Assertions
+   ✓ res.status: eq 400
+   ✓ res.body.error: eq INVALID_PAGINATION
+15 - Avisos limit invalido (400) (400 Bad Request) - 1 ms
+Assertions
+   ✓ res.status: eq 400
+   ✓ res.body.error: eq INVALID_PAGINATION
+16 - Crear aviso (201 Created) - 0 ms
+Assertions
+   ✓ res.status: eq 201
+   ✓ res.body.data.title: eq Aviso de Bruno
+   ✓ res.body.data.description: eq ""
+   ✓ res.body.data.id: isString
+   ✓ res.body.data.createdAt: isString
+17 - Crear aviso titulo invalido (400) (400 Bad Request) - 0 ms
+Assertions
+   ✓ res.status: eq 400
+   ✓ res.body.error: eq MISSING_TITLE
+18 - Crear aviso description invalida (400) (400 Bad Request) - 1 ms
+Assertions
+   ✓ res.status: eq 400
+   ✓ res.body.error: eq INVALID_DESCRIPTION
+19 - Consultar aviso (200 OK) - 0 ms
+Assertions
+   ✓ res.status: eq 200
+   ✓ res.body.data.title: eq Aviso de Bruno
+20 - Actualizar solo description (200 OK) - 0 ms
+Assertions
+   ✓ res.status: eq 200
+   ✓ res.body.data.description: eq Nueva descripcion
+   ✓ res.body.data.title: eq Aviso de Bruno
+21 - Comprobar que el titulo se conserva (200 OK) - 0 ms
+Assertions
+   ✓ res.status: eq 200
+   ✓ res.body.data.title: eq Aviso de Bruno
+   ✓ res.body.data.description: eq Nueva descripcion
+22 - Actualizacion invalida (400) (400 Bad Request) - 0 ms
+Assertions
+   ✓ res.status: eq 400
+   ✓ res.body.error: eq INVALID_DESCRIPTION
+23 - Comprobar que no se modifico nada (200 OK) - 0 ms
+Assertions
+   ✓ res.status: eq 200
+   ✓ res.body.data.title: eq Aviso de Bruno
+   ✓ res.body.data.description: eq Nueva descripcion
+24 - Aviso inexistente (404) (404 Not Found) - 0 ms
+Assertions
+   ✓ res.status: eq 404
+   ✓ res.body.resourceId: eq no-existe
+25 - Actualizar aviso inexistente (404) (404 Not Found) - 0 ms
+Assertions
+   ✓ res.status: eq 404
+   ✓ res.body.resourceId: eq no-existe
+26 - Documento existente (200 OK) - 0 ms
+Assertions
+   ✓ res.status: eq 200
+27 - Ruta inexistente (404) (404 Not Found) - 0 ms
+Assertions
+   ✓ res.status: eq 404
+   ✓ res.body.error: eq NOT_FOUND
+28 - JSON mal formado (400) (400 Bad Request) - 1 ms
+Assertions
+   ✓ res.status: eq 400
+   ✓ res.body.error: eq INVALID_JSON
+29 - Documento titulo vacio (400 directo) (400 Bad Request) - 0 ms
+Assertions
+   ✓ res.status: eq 400
+   ✓ res.body.error: eq INVALID_TITLE
+
+📊 Execution Summary
+┌───────────────┬────────────────┐
+│ Metric        │     Result     │
+├───────────────┼────────────────┤
+│ Status        │     ✓ PASS     │
+├───────────────┼────────────────┤
+│ Requests      │ 29 (29 Passed) │
+├───────────────┼────────────────┤
+│ Tests         │      0/0       │
+├───────────────┼────────────────┤
+│ Assertions    │     60/60      │
+├───────────────┼────────────────┤
+│ Duration (ms) │       26       │
+└───────────────┴────────────────┘

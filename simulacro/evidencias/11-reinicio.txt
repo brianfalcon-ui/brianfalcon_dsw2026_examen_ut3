@@ -1,0 +1,30 @@
+Reinicio del servidor
+
+Antes (tras crear un aviso):
+$ curl -i http://localhost:4000/api/v1/notices?search=Temporal
+HTTP/1.1 200 OK
+X-Powered-By: Express
+X-Request-Id: fea29671-cd5e-426e-ac28-0cf15d8fd2f7
+Content-Type: application/json; charset=utf-8
+Content-Length: 175
+ETag: W/"af-yD2IaEp3S4Yej2pkW5Rdw75NUWg"
+Date: Thu, 26 Nov 2026 11:07:30 GMT
+Connection: keep-alive
+Keep-Alive: timeout=5
+
+{"data":[{"id":"9329ae4a-80fb-4177-8967-2895dee5632a","title":"Temporal","description":"","createdAt":"2026-11-26T11:07:30.228Z"}],"pagination":{"page":1,"limit":2,"total":1}}
+
+Después de reiniciar:
+$ curl -i http://localhost:4000/api/v1/notices?search=Temporal
+HTTP/1.1 200 OK
+X-Powered-By: Express
+X-Request-Id: f4c325f6-2012-404d-909a-504e0ae98b83
+Content-Type: application/json; charset=utf-8
+Content-Length: 55
+ETag: W/"37-U30H8NV6ZTYMFZ17VzAPj5wOFPU"
+Date: Thu, 26 Nov 2026 11:07:30 GMT
+Connection: keep-alive
+Keep-Alive: timeout=5
+
+{"data":[],"pagination":{"page":1,"limit":2,"total":0}}
+

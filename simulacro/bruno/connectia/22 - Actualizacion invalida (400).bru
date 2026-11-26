@@ -1,0 +1,23 @@
+meta {
+  name: 22 - Actualizacion invalida (400)
+  type: http
+  seq: 22
+}
+
+patch {
+  url: {{baseUrl}}/api/v1/notices/{{noticeId}}
+  body: json
+  auth: none
+}
+
+body:json {
+  {
+    "title": "No debe guardarse",
+    "description": 5
+  }
+}
+
+assert {
+  res.status: eq 400
+  res.body.error: eq INVALID_DESCRIPTION
+}

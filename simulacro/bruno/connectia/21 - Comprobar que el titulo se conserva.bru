@@ -1,0 +1,17 @@
+meta {
+  name: 21 - Comprobar que el titulo se conserva
+  type: http
+  seq: 21
+}
+
+get {
+  url: {{baseUrl}}/api/v1/notices/{{noticeId}}
+  body: none
+  auth: none
+}
+
+assert {
+  res.status: eq 200
+  res.body.data.title: eq Aviso de Bruno
+  res.body.data.description: eq Nueva descripcion
+}

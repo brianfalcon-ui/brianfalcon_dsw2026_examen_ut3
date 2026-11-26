@@ -1,0 +1,16 @@
+meta {
+  name: 27 - Ruta inexistente (404)
+  type: http
+  seq: 27
+}
+
+get {
+  url: {{baseUrl}}/no/existe
+  body: none
+  auth: none
+}
+
+assert {
+  res.status: eq 404
+  res.body.error: eq NOT_FOUND
+}

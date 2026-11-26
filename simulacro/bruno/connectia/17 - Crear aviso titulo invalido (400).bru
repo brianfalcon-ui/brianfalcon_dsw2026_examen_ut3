@@ -1,0 +1,22 @@
+meta {
+  name: 17 - Crear aviso titulo invalido (400)
+  type: http
+  seq: 17
+}
+
+post {
+  url: {{baseUrl}}/api/v1/notices
+  body: json
+  auth: none
+}
+
+body:json {
+  {
+    "title": "   "
+  }
+}
+
+assert {
+  res.status: eq 400
+  res.body.error: eq MISSING_TITLE
+}

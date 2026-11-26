@@ -1,0 +1,23 @@
+meta {
+  name: 18 - Crear aviso description invalida (400)
+  type: http
+  seq: 18
+}
+
+post {
+  url: {{baseUrl}}/api/v1/notices
+  body: json
+  auth: none
+}
+
+body:json {
+  {
+    "title": "Valido",
+    "description": 5
+  }
+}
+
+assert {
+  res.status: eq 400
+  res.body.error: eq INVALID_DESCRIPTION
+}

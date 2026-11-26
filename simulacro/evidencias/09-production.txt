@@ -1,0 +1,33 @@
+NODE_ENV=production, LOG=ON (error temporal en GET /api/v1/notices/fallo)
+
+$ curl -i http://localhost:4000/api/v1/notices?limit=1
+HTTP/1.1 200 OK
+X-Powered-By: Express
+X-Request-Id: cbdd56d3-d506-4168-aeee-a09909ffb92c
+Content-Type: application/json; charset=utf-8
+Content-Length: 188
+ETag: W/"bc-VLBPWDUBXoBjWgyHUkOZu+BeUng"
+Date: Thu, 26 Nov 2026 11:07:21 GMT
+Connection: keep-alive
+Keep-Alive: timeout=5
+
+{"data":[{"id":"11111111-1111-5111-8111-111111111111","title":"Noticias de seguridad","description":"","createdAt":"2026-09-01T08:00:00.000Z"}],"pagination":{"page":1,"limit":1,"total":5}}
+
+$ curl -i http://localhost:4000/api/v1/notices/fallo
+HTTP/1.1 500 Internal Server Error
+X-Powered-By: Express
+X-Request-Id: 9712999a-ad97-4377-b90f-837c115e95d9
+Content-Type: application/json; charset=utf-8
+Content-Length: 67
+ETag: W/"43-aL12W+MD3OWAWa4rUhKdpFn+Ugw"
+Date: Thu, 26 Nov 2026 11:07:21 GMT
+Connection: keep-alive
+Keep-Alive: timeout=5
+
+{"error":"INTERNAL_ERROR","message":"An unexpected error occurred"}
+
+--- Registros del servidor ---
+Listening on http://localhost:4000 (production), LOG status: (ON)
+{"requestId":"cbdd56d3-d506-4168-aeee-a09909ffb92c","method":"GET","path":"/","status":200,"durationMs":1.95}
+{"requestId":"9712999a-ad97-4377-b90f-837c115e95d9","error":"Fallo interno de prueba"}
+{"requestId":"9712999a-ad97-4377-b90f-837c115e95d9","method":"GET","path":"/api/v1/notices/fallo","status":500,"durationMs":0.46}

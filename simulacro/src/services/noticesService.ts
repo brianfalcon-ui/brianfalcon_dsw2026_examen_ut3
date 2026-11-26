@@ -45,12 +45,9 @@ const notices: Notice[] = [
 // GET /api/v1/notices?search=noticias&page=2&limit=1
 export function list(page: number, limit: number, search?: string) {
   let results = notices;
-  
 
   if (search) {
-    results = results.filter((notice) =>
-      notice.title.toLowerCase().includes(search.toLowerCase()),
-    );
+    results = results.filter((notice) => notice.title.toLowerCase().includes(search.toLowerCase()));
   }
 
   const start = (page - 1) * limit;
@@ -61,48 +58,43 @@ export function list(page: number, limit: number, search?: string) {
   };
 }
 
-// POST /api/v1/Notices
-
+// POST /api/v1/notices
 export function create(title: string, description?: string) {
-  const Notice: Notice = {
+  const notice: Notice = {
     id: randomUUID(),
     title,
     description: description ?? '',
     createdAt: new Date().toISOString(),
   };
-  notices.push(Notice);
-  return Notice;
+  notices.push(notice);
+  return notice;
 }
 
-// GET /api/v1/Notices/:NoticeId
-export function getById(NoticeId: string) {
-  const Notice = notices.find((not) => not.id === NoticeId);
+// GET /api/v1/notices/:noticeId
+export function getById(noticeId: string) {
+  const notice = notices.find((item) => item.id === noticeId);
 
-  if (!Notice) {
+  if (!notice) {
     throw new ResourceNotFoundError(
       404,
-      `Notice with id '${NoticeId}' not found`,
+      `Notice with id '${noticeId}' not found`,
       'RESOURCE_NOT_FOUND',
-      NoticeId,
+      noticeId,
     );
   }
 
-  return Notice;
+  return notice;
 }
 
-// PATCH /api/v1/Notices/:NoticeId
-export function update(NoticeId: string, title?: string, description?: string) {
-  const Notice = notices.find((not) => not.id === NoticeId);
+// PATCH /api/v1/notices/:noticeId
+export function update(noticeId: string, title?: string, description?: string) {
+  const notice = getById(noticeId); // lanza ResourceNotFoundError si no existe
 
-  if (!Notice) {
-    return undefined;
-  }
-
-  if (title) {
-    Notice.title = title;
+  if (title !== undefined) {
+    notice.title = title;
   }
   if (description !== undefined) {
-    Notice.description = description;
+    notice.description = description;
   }
-  return Notice;
+  return notice;
 }

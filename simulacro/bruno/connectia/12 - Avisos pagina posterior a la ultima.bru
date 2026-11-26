@@ -1,0 +1,20 @@
+meta {
+  name: 12 - Avisos pagina posterior a la ultima
+  type: http
+  seq: 12
+}
+
+get {
+  url: {{baseUrl}}/api/v1/notices?page=99
+  body: none
+  auth: none
+}
+
+params:query {
+  page: 99
+}
+
+assert {
+  res.status: eq 200
+  res.body.data: length 0
+}

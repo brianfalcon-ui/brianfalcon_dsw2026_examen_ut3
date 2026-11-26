@@ -1,0 +1,23 @@
+meta {
+  name: 20 - Actualizar solo description
+  type: http
+  seq: 20
+}
+
+patch {
+  url: {{baseUrl}}/api/v1/notices/{{noticeId}}
+  body: json
+  auth: none
+}
+
+body:json {
+  {
+    "description": "Nueva descripcion"
+  }
+}
+
+assert {
+  res.status: eq 200
+  res.body.data.description: eq Nueva descripcion
+  res.body.data.title: eq Aviso de Bruno
+}

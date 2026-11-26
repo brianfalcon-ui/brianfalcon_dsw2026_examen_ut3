@@ -1,0 +1,16 @@
+meta {
+  name: 24 - Aviso inexistente (404)
+  type: http
+  seq: 24
+}
+
+get {
+  url: {{baseUrl}}/api/v1/notices/no-existe
+  body: none
+  auth: none
+}
+
+assert {
+  res.status: eq 404
+  res.body.resourceId: eq no-existe
+}

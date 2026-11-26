@@ -1,0 +1,16 @@
+meta {
+  name: 19 - Consultar aviso
+  type: http
+  seq: 19
+}
+
+get {
+  url: {{baseUrl}}/api/v1/notices/{{noticeId}}
+  body: none
+  auth: none
+}
+
+assert {
+  res.status: eq 200
+  res.body.data.title: eq Aviso de Bruno
+}

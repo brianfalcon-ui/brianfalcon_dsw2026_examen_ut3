@@ -1,0 +1,9 @@
+
+> connectia-backend@1.0.0 typecheck
+> tsc --noEmit
+
+
+> connectia-backend@1.0.0 lint
+> eslint .
+
+Código de salida: 0
